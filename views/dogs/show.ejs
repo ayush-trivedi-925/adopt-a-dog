@@ -1,0 +1,159 @@
+<%- layout("layouts/boilerplate") %>
+<link rel="stylesheet" href="/stylesheets/stars.css" />
+<script>
+  const maptilerApiKey = "<%-process.env.MAPTILER_API_KEY%>";
+  const dog = <%- JSON.stringify(dog) %>
+</script>
+<div class="row">
+  <!-- Left Side: Dog Information and Carousel -->
+  <div class="col-6">
+    <div class="card mb-3">
+      <div id="DogImgCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <% dog.images.forEach((img, i) => { %>
+          <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+            <img
+              src="<%= img.url %>"
+              class="d-block w-100"
+              alt="Dog Image"
+              crossorigin="anonymous"
+            />
+          </div>
+          <% }) %>
+        </div>
+        <% if (dog.images.length > 1) { %>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#DogImgCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#DogImgCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+        <% } %>
+      </div>
+
+      <div class="card-body">
+        <h5 class="card-title"><%= dog.name %></h5>
+        <p class="card-text"><%= dog.about %></p>
+      </div>
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <b>Companion:</b> <%= dog.author.username %>
+        </li>
+        <li class="list-group-item"><b>Age:</b> <%= dog.age %></li>
+        <li class="list-group-item"><b>Sex:</b> <%= dog.sex %></li>
+        <li class="list-group-item"><b>Color:</b> <%= dog.color %></li>
+        <li class="list-group-item"><b>Location:</b> <%= dog.location %></li>
+      </ul>
+
+      <% if (currentUser && dog.author._id.equals(currentUser._id)) { %>
+      <div class="card-body">
+        <a
+          href="/dogs/<%= dog._id %>/edit"
+          class="card-link btn btn-info text-white"
+          >Edit</a
+        >
+        <form
+          class="d-inline"
+          action="/dogs/<%= dog._id %>?_method=DELETE"
+          method="post"
+        >
+          <button type="submit" class="card-link btn btn-danger">Remove</button>
+        </form>
+      </div>
+      <% } %>
+    </div>
+  </div>
+  <!-- Right Side: Review Form and Reviews Section -->
+  <div class="col-6">
+    <div id="map" class="ml-3" style="width: 600px; height: 300px"></div>
+    <% if (currentUser) { %>
+    <h2>Submit a Review</h2>
+    <form
+      action="/dogs/<%= dog._id %>/reviews"
+      method="post"
+      class="mb-3 needs-validation"
+      novalidate
+    >
+      <fieldset class="starability-growRotate mb-1">
+        <input
+          type="radio"
+          id="no-rate"
+          class="input-no-rate"
+          name="rating"
+          value="1"
+          checked
+          aria-label="No rating."
+        />
+        <input type="radio" id="rate1" name="rating" value="1" />
+        <label for="rate1">1 star.</label>
+        <input type="radio" id="rate2" name="rating" value="2" />
+        <label for="rate2">2 stars.</label>
+        <input type="radio" id="rate3" name="rating" value="3" />
+        <label for="rate3">3 stars.</label>
+        <input type="radio" id="rate4" name="rating" value="4" />
+        <label for="rate4">4 stars.</label>
+        <input type="radio" id="rate5" name="rating" value="5" />
+        <label for="rate5">5 stars.</label>
+        <span class="starability-focus-ring"></span>
+      </fieldset>
+
+      <div class="mb-3">
+        <label class="form-label" for="review">Review:</label>
+        <textarea
+          class="form-control"
+          name="body"
+          id="review"
+          cols="30"
+          rows="4"
+          required
+        ></textarea>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Text required!</div>
+      </div>
+      <button class="btn btn-success">Submit</button>
+    </form>
+    <% } %>
+
+    <!-- Render Reviews Only if They Exist -->
+    <% if (dog.reviews.length > 0) { %>
+    <h3>Reviews</h3>
+    <% dog.reviews.forEach(review => { %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5><%= review.author.username %></h5>
+        <p class="starability-result" data-rating="<%= review.rating %>">
+          Rated: <%= review.rating %> stars
+        </p>
+        <p class="list-group-item card-text">Review: <%= review.body %></p>
+        <% if (currentUser && review.author._id.equals(currentUser._id)) { %>
+        <form
+          action="/dogs/<%= dog._id %>/reviews/<%= review._id %>?_method=DELETE"
+          method="post"
+        >
+          <button class="btn btn-sm btn-danger">Delete</button>
+        </form>
+        <% } %>
+      </div>
+    </div>
+    <% }) %> <% } else if (currentUser) { %>
+    <p class="text-muted">No reviews yet. Be the first to review!</p>
+    <% } %>
+  </div>
+</div>
+
+<!-- MAP STUFF!!! -->
+
+<script src="/javascripts/showMapPage.js"></script>

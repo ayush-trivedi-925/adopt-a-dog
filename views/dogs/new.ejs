@@ -1,0 +1,89 @@
+<% layout("layouts/boilerplate") %>
+<h1 class="text-center">Add-A-Dog</h1>
+<div class="row">
+  <div class="col-6 offset-3">
+    <form
+      action="/dogs"
+      method="post"
+      novalidate
+      class="needs-validation"
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3">
+        <label class="form-label" for="name">Name: </label>
+        <input
+          class="form-control"
+          type="text"
+          name="name"
+          id="name"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Name required!</div>
+      </div>
+      <div class="mb-3">
+        <input type="file" name="image" id="image" multiple />
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="age">Age: </label>
+        <input
+          class="form-control"
+          type="number"
+          name="age"
+          id="age"
+          min="0"
+          max="3"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Age required!</div>
+      </div>
+      <div class="mb-3">
+        <label for="sex">Sex: </label>
+        <select class="form-select" name="sex" id="sex">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="color">Color: </label>
+        <input
+          class="form-control"
+          type="text"
+          name="color"
+          id="color"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Color required!</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="location">Location: </label>
+        <input
+          class="form-control"
+          type="text"
+          name="location"
+          id="location"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Location required!</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="about">About: </label>
+        <textarea
+          class="form-control"
+          type="text"
+          name="about"
+          id="about"
+          required
+        ></textarea>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">About required!</div>
+      </div>
+      <button class="btn btn-success mb-3">Add-A-dog</button>
+    </form>
+    <a class="btn btn-danger" href="/dogs">Cancel</a>
+  </div>
+</div>

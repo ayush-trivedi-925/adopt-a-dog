@@ -1,0 +1,52 @@
+<% layout("layouts/boilerplate") %>
+
+<div id="map" class="mb-3" style="width: 100%; height: 500px"></div>
+<h1 class="mb-3">Dogs for Adoptation</h1>
+
+<% for(let dog of dogs) { %>
+<div class="card mb-3">
+  <div class="row">
+    <!-- Check if images array exists and is not empty -->
+    <div class="col-md-4">
+      <% if ( dog.images.length) { %>
+      <img
+        src="<%= dog.images[0].url %>"
+        alt="Responsive image"
+        class="img-fluid"
+        crossorigin="anonymous"
+      />
+
+      <% } else {%>
+
+      <img
+        src="/default card image/Golden-Retriever-puppy-laying-indoors-on-a-wood-floor.jpg"
+        alt="Responsive image"
+        class="img-fluid"
+        crossorigin="anonymous"
+      />
+
+      <% } %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= dog.name %></h5>
+        <p class="card-text"></p>
+        <p class="card-text"><b>Age: </b><%= dog.age %></p>
+        <p class="card-text"><b>Sex: </b><%= dog.sex %></p>
+        <p class="card-text"><b>Location: </b><%= dog.location %></p>
+        <p class="card-text"><b>About: </b><%= dog.about %></p>
+        <a href="/dogs/<%= dog._id %>" class="btn btn-primary"
+          >View <%= dog.name %></a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<% } %>
+
+<script>
+  const maptilerApiKey = "<%-process.env.MAPTILER_API_KEY%>";
+  const dogs ={features:  <%- JSON.stringify(dogs) %>};
+</script>
+
+<script src="/javascripts/clustermap.js"></script>

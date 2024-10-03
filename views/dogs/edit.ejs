@@ -1,0 +1,126 @@
+<% layout("layouts/boilerplate") %>
+<h1>Edit, <%= foundDog.name %></h1>
+<div class="row">
+  <div class="col-6 offset-3">
+    <form
+      action="/dogs/<%= foundDog._id %>?_method=PUT"
+      method="post"
+      novalidate
+      class="needs-validation"
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3">
+        <label class="form-label" for="name">Name: </label>
+        <input
+          class="form-control"
+          type="text"
+          name="name"
+          id="name"
+          value="<%= foundDog.name %>"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Name required!</div>
+      </div>
+      <div class="mb-3 custom-file">
+        <label class="form-label" id="image">Add Images:</label>
+        <input
+          class="form-control"
+          type="file"
+          name="image"
+          id="image"
+          multiple
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="age">Age: </label>
+        <input
+          class="form-control"
+          type="number"
+          name="age"
+          id="age"
+          min="0"
+          max="3"
+          value="<%= foundDog.age %>"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Age required!</div>
+      </div>
+      <div class="mb-3">
+        <label for="sex">Sex: </label>
+        <select class="form-select" name="sex" id="sex">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="color">Color: </label>
+        <input
+          class="form-control"
+          type="text"
+          name="color"
+          id="color"
+          value="<%= foundDog.color %>"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Color required!</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="location">Location: </label>
+        <input
+          class="form-control"
+          type="text"
+          name="location"
+          id="location"
+          value="<%= foundDog.location %>"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Location required!</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="about">About: </label>
+        <textarea
+          class="form-control"
+          name="about"
+          id="about"
+          rows="5"
+          required
+        >
+<%= foundDog.about %></textarea
+        >
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">About required!</div>
+      </div>
+
+      <h6>Delete Images</h6>
+      <div class="row row-cols-1 row-cols-md-4 g-4 mb-3">
+        <% foundDog.images.forEach((img, i) => { %>
+        <div class="col">
+          <div class="card">
+            <img class="card-img" src="<%= img.url %>" alt="" />
+            <div class="card-img-overlay text-end pt-1 pe-2">
+              <label class="visually-hidden" for="image-<%= i %>"
+                >Delete Image</label
+              >
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="deleteImages[]"
+                value="<%= img.filename %>"
+                id="image-<%= i %>"
+              />
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <button class="btn btn-success mb-3">Update <%= foundDog.name %></button>
+    </form>
+    <a class="btn btn-danger mb-1" href="/dogs/<%= foundDog._id %>">Cancel</a>
+  </div>
+</div>
