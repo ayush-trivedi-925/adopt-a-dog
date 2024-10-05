@@ -18,9 +18,11 @@ Adopt-A-Dog is a user-friendly web application designed to connect prospective p
 - **Express.js**: Web application framework for Node.js to build APIs and web applications.
 - **MongoDB**: NoSQL database used for storing user data, dog listings, and reviews.
 - **Mongoose**: ODM (Object Data Modeling) library for MongoDB and Node.js.
+- **Bootstrap**: A front-end framework for developing responsive and visually appealing web applications.
 - **EJS**: Templating engine for rendering HTML pages with embedded JavaScript.
 - **Passport.js**: Authentication middleware for Node.js.
 - **Joi**: Validation library for JavaScript objects, used for server-side input validation.
+- **Data Associations** - associating user data with the respective campgrounds and comments using reference method
 - **Cloudinary**: Image management service for uploading and transforming images.
 - **MapTiler**: Mapping service for creating interactive maps to display adoption locations.
 - **Helmet**: Middleware for securing Express apps by setting various HTTP headers.
