@@ -7,7 +7,6 @@ Adopt-A-Dog is a user-friendly web application designed to connect prospective p
 - **User Authentication**: Secure login and registration using Passport.js with Google OAuth.
 - **Profile Management**: Users can create and manage their profiles.
 - **Dog Listings**: View available dogs for adoption with detailed information.
-- **Public and Private Stories**: Users can share their experiences and stories about dog adoption.
 - **Image Uploading**: Users can upload images of dogs using Cloudinary.
 - **Responsive Design**: Built with Materialize CSS to ensure a mobile-friendly experience.
 - **Interactive Maps**: Utilize MapTiler to display locations for dog adoption events.
