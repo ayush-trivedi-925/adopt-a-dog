@@ -23,5 +23,4 @@ Adopt-A-Dog is a user-friendly web application designed to connect prospective p
 - **Joi**: Validation library for JavaScript objects, used for server-side input validation.
 - **Cloudinary**: Image management service for uploading and transforming images.
 - **MapTiler**: Mapping service for creating interactive maps to display adoption locations.
-- **dotenv**: Loads environment variables from a `.env` file into `process.env`.
 - **Helmet**: Middleware for securing Express apps by setting various HTTP headers.
