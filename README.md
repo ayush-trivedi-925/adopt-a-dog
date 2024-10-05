@@ -4,12 +4,12 @@ Adopt-A-Dog is a user-friendly web application designed to connect prospective p
 
 ## Features
 
-- **User Authentication**: Secure login and registration using Passport.js with Google OAuth.
+- **User Authentication**: Secure login and registration using Passport.js.
 - **Profile Management**: Users can create and manage their profiles.
 - **Dog Listings**: View available dogs for adoption with detailed information.
 - **Image Uploading**: Users can upload images of dogs using Cloudinary.
-- **Responsive Design**: Built with Materialize CSS to ensure a mobile-friendly experience.
-- **Interactive Maps**: Utilize MapTiler to display locations for dog adoption events.
+- **Responsive Design**: Built with Bootstrap CSS to ensure a mobile-friendly experience.
+- **Interactive Maps**: Utilize MapTiler to display locations for dog adoption.
 - **Server-side Validation**: Input validation using Joi to ensure data integrity.
 
 ## Technologies Used
@@ -22,7 +22,7 @@ Adopt-A-Dog is a user-friendly web application designed to connect prospective p
 - **EJS**: Templating engine for rendering HTML pages with embedded JavaScript.
 - **Passport.js**: Authentication middleware for Node.js.
 - **Joi**: Validation library for JavaScript objects, used for server-side input validation.
-- **Data Associations** - associating user data with the respective campgrounds and comments using reference method.
+- **Data Associations** - Associating user data with the respective dog's profile and comments using reference method.
 - **Cloudinary**: Image management service for uploading and transforming images.
 - **MapTiler**: Mapping service for creating interactive maps to display adoption locations.
 - **Helmet**: Middleware for securing Express apps by setting various HTTP headers.
