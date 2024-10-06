@@ -29,7 +29,7 @@ const { isExpression } = require("joi");
 
 const dbUrl = "mongodb://localhost:27017/adopt-a-dog";
 
-mongoose.connect(dbUrl);
+mongoose.connect(process.env.DB_URL);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "Connection error"));
@@ -66,7 +66,7 @@ const sessionOptions = {
   cookie: {
     maxAge: 1000 * 60 * 60 * 24 * 7,
     httpOnly: true,
-    // secure: true,
+    secure: true,
   },
 };
 
